@@ -2,116 +2,140 @@
 -- RetailPro - Consultas de Negocio
 -- Módulo 4 - SQL para Data Analytics
 -- Autor: Gerónimo Daguerre
--- Base de datos: Ventas_Tech_DB
+-- Fecha: Junio 2026
 -- ═══════════════════════════════════════════════
+
+-- Contexto:
+-- Las siguientes consultas fueron diseñadas a partir
+-- del modelo relacional RetailPro definido en el brief
+-- analítico del proyecto.
+--------------------------
+
+-- Tablas utilizadas:
+-- CLIENTES
+-- PRODUCTOS
+-- VENTAS
+-- TERRITORIOS
+--------------
+
+-- Objetivo:
+-- Obtener indicadores de negocio mediante funciones
+-- de agregación, agrupamiento, filtros de grupos,
+-- rankings y clasificaciones para apoyar futuras
+-- visualizaciones en Power BI.
 
 ---
 
 -- CONSULTA 1
--- Ventas totales por categoría
--------------------------------
+-- Ventas totales por región
+----------------------------
 
 SELECT
-cat.nombre_categoria,
-SUM(v.cantidad * v.precio_unitario) AS ventas_totales
+t.region,
+SUM(v.total_venta) AS ventas_totales
 FROM ventas v
-JOIN productos p
-ON v.id_producto = p.id_producto
-JOIN categorias cat
-ON p.id_categoria = cat.id_categoria
-GROUP BY cat.nombre_categoria
+INNER JOIN territorios t
+ON v.id_territorio = t.id_territorio
+GROUP BY t.region
 ORDER BY ventas_totales DESC;
 
--- Objetivo:
--- Identificar qué categorías generan mayores ingresos.
+-- Interpretación:
+-- Permite identificar qué regiones generan
+-- el mayor volumen de ingresos para RetailPro.
 
 ---
 
 -- CONSULTA 2
--- Top 3 clientes con mayor facturación
----------------------------------------
+-- Ticket promedio por región
+-----------------------------
 
-SELECT TOP 3
-c.nombre,
-SUM(v.cantidad * v.precio_unitario) AS gasto_total
+SELECT
+t.region,
+AVG(v.total_venta) AS ticket_promedio
 FROM ventas v
-JOIN clientes c
-ON v.id_cliente = c.id_cliente
-GROUP BY c.nombre
-ORDER BY gasto_total DESC;
+INNER JOIN territorios t
+ON v.id_territorio = t.id_territorio
+GROUP BY t.region
+ORDER BY ticket_promedio DESC;
 
--- Objetivo:
--- Detectar los clientes de mayor valor para la empresa.
+-- Interpretación:
+-- Permite comparar el valor promedio de las
+-- transacciones realizadas en cada región.
 
 ---
 
 -- CONSULTA 3
--- Clientes con gasto superior a 1000
--------------------------------------
+-- Regiones con ventas superiores al promedio
+---------------------------------------------
 
 SELECT
-c.nombre,
-SUM(v.cantidad * v.precio_unitario) AS gasto_total
+t.region,
+SUM(v.total_venta) AS ventas_totales
 FROM ventas v
-JOIN clientes c
-ON v.id_cliente = c.id_cliente
-GROUP BY c.nombre
-HAVING SUM(v.cantidad * v.precio_unitario) > 1000
-ORDER BY gasto_total DESC;
+INNER JOIN territorios t
+ON v.id_territorio = t.id_territorio
+GROUP BY t.region
+HAVING SUM(v.total_venta) >
+(
+SELECT AVG(total_venta)
+FROM ventas
+)
+ORDER BY ventas_totales DESC;
 
--- Objetivo:
--- Identificar clientes estratégicos para campañas
--- de fidelización.
+-- Interpretación:
+-- Identifica regiones cuyo desempeño comercial
+-- supera el promedio general registrado.
 
 ---
 
 -- CONSULTA 4
--- Clasificación de clientes por nivel de gasto
------------------------------------------------
+-- Clasificación regional mediante CASE WHEN
+--------------------------------------------
 
 SELECT
-c.nombre,
+t.region,
 
 ```
-SUM(v.cantidad * v.precio_unitario) AS gasto_total,
+AVG(v.total_venta) AS ticket_promedio,
 
 CASE
-    WHEN SUM(v.cantidad * v.precio_unitario) >= 2000
-        THEN 'Cliente Premium'
+    WHEN AVG(v.total_venta) >
+         (SELECT AVG(total_venta)
+          FROM ventas)
+    THEN 'Por encima del promedio'
 
-    WHEN SUM(v.cantidad * v.precio_unitario) >= 1000
-        THEN 'Cliente Frecuente'
-
-    ELSE 'Cliente Ocasional'
-END AS categoria_cliente
+    ELSE 'Por debajo del promedio'
+END AS rendimiento_region
 ```
 
 FROM ventas v
-JOIN clientes c
-ON v.id_cliente = c.id_cliente
+INNER JOIN territorios t
+ON v.id_territorio = t.id_territorio
 
-GROUP BY c.nombre
+GROUP BY t.region
+ORDER BY ticket_promedio DESC;
 
-ORDER BY gasto_total DESC;
+-- Interpretación:
+-- Clasifica cada región según su rendimiento
+-- relativo respecto al promedio general.
 
--- Objetivo:
--- Segmentar clientes según su contribución
--- económica al negocio.
+-- ==========================================
+-- HALLAZGOS DE NEGOCIO
+-- ==========================================
 
----
+-- Hallazgo 1:
+-- El análisis de ventas por región permite
+-- identificar los territorios con mayor
+-- contribución a la facturación total.
 
-## -- HALLAZGOS DE NEGOCIO
+-- Hallazgo 2:
+-- El ticket promedio regional facilita la
+-- comparación del comportamiento comercial
+-- entre diferentes mercados geográficos.
 
--- 1.
--- La categoría Computación concentra la mayor
--- parte de la facturación del negocio.
-
--- 2.
--- Existe un grupo reducido de clientes que
--- generan una proporción significativa de los
--- ingresos totales.
-
--- 3.
--- La segmentación mediante CASE WHEN permite
--- identificar clientes Premium y diseñar
--- estrategias de fidelización específicas.
+-- Hallazgo 3:
+-- La clasificación mediante CASE WHEN permite
+-- detectar rápidamente regiones por encima
+-- y por debajo del promedio general, ayudando
+-- a priorizar acciones comerciales y futuras
+-- visualizaciones en Power BI.
