@@ -171,6 +171,40 @@ Beneficios:
 
 ---
 
+## Módulo 4 – Consultas de Negocio
+
+**Archivo:** `m4_consultas_negocio.sql`
+
+### Conceptos trabajados
+
+* COUNT()
+* SUM()
+* AVG()
+* GROUP BY
+* HAVING
+* ORDER BY
+* TOP
+* CASE WHEN
+* Interpretación de métricas de negocio
+
+### Objetivo
+
+Construir consultas SQL orientadas al análisis de negocio utilizando funciones de agregación, agrupamiento y clasificación de datos.
+
+### Hallazgos obtenidos
+
+Las consultas desarrolladas permiten:
+
+* Identificar las categorías con mayor volumen de ventas.
+* Detectar clientes con mayor frecuencia de compra.
+* Calcular el ticket promedio por categoría.
+* Reconocer las líneas de negocio más rentables.
+* Identificar los productos más vendidos.
+* Clasificar operaciones según su valor económico.
+
+Estas métricas constituyen la base para futuros análisis y visualizaciones en Power BI.
+
+
 ## Autor
 
 Gerónimo Daguerre
