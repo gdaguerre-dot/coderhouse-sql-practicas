@@ -8,95 +8,101 @@
 ---
 
 -- CONSULTA 1
--- Ventas totales por categoría
--------------------------------
+-- Ventas por ciudad (territorio) y mes
+---------------------------------------
 
 SELECT
-c.nombre_categoria,
+MONTH(v.fecha_venta) AS mes,
+c.ciudad,
 SUM(v.cantidad * v.precio_unitario) AS ventas_totales
 FROM ventas v
-INNER JOIN productos p
-ON v.id_producto = p.id_producto
-INNER JOIN categorias c
-ON p.id_categoria = c.id_categoria
-GROUP BY c.nombre_categoria
+INNER JOIN clientes c
+ON v.id_cliente = c.id_cliente
+GROUP BY
+MONTH(v.fecha_venta),
+c.ciudad
 ORDER BY ventas_totales DESC;
 
 ---
 
 -- CONSULTA 2
--- Cantidad de compras por cliente
-----------------------------------
+-- Ranking de productos por facturación
+---------------------------------------
 
 SELECT
-cl.nombre,
-COUNT(v.id_venta) AS cantidad_compras
-FROM clientes cl
-INNER JOIN ventas v
-ON cl.id_cliente = v.id_cliente
-GROUP BY cl.nombre
-ORDER BY cantidad_compras DESC;
+p.nombre_producto,
+SUM(v.cantidad * v.precio_unitario) AS facturacion_total
+FROM ventas v
+INNER JOIN productos p
+ON v.id_producto = p.id_producto
+GROUP BY p.nombre_producto
+ORDER BY facturacion_total DESC;
 
 ---
 
 -- CONSULTA 3
--- Ticket promedio por categoría
---------------------------------
+-- Clientes activos
+-------------------
 
 SELECT
-c.nombre_categoria,
-AVG(v.cantidad * v.precio_unitario) AS ticket_promedio
-FROM ventas v
-INNER JOIN productos p
-ON v.id_producto = p.id_producto
-INNER JOIN categorias c
-ON p.id_categoria = c.id_categoria
-GROUP BY c.nombre_categoria
-HAVING AVG(v.cantidad * v.precio_unitario) > 200
-ORDER BY ticket_promedio DESC;
+c.nombre,
+COUNT(v.id_venta) AS cantidad_compras
+FROM clientes c
+INNER JOIN ventas v
+ON c.id_cliente = v.id_cliente
+GROUP BY c.nombre
+ORDER BY cantidad_compras DESC;
 
 ---
 
 -- CONSULTA 4
--- Clasificación de ventas mediante CASE WHEN
----------------------------------------------
+-- Performance comercial por ciudad
+-----------------------------------
 
 SELECT
-p.nombre_producto,
-SUM(v.cantidad * v.precio_unitario) AS ventas_totales,
+c.ciudad,
 
 ```
+AVG(v.cantidad * v.precio_unitario) AS ticket_promedio,
+
 CASE
-    WHEN SUM(v.cantidad * v.precio_unitario) >= 1000
-        THEN 'Alto rendimiento'
-    WHEN SUM(v.cantidad * v.precio_unitario) >= 500
-        THEN 'Rendimiento medio'
-    ELSE 'Bajo rendimiento'
-END AS clasificacion
+    WHEN AVG(v.cantidad * v.precio_unitario) >
+         (
+            SELECT AVG(cantidad * precio_unitario)
+            FROM ventas
+         )
+    THEN 'Por encima del promedio'
+
+    ELSE 'Por debajo del promedio'
+END AS performance
 ```
 
 FROM ventas v
-INNER JOIN productos p
-ON v.id_producto = p.id_producto
+INNER JOIN clientes c
+ON v.id_cliente = c.id_cliente
 
-GROUP BY p.nombre_producto
-ORDER BY ventas_totales DESC;
+GROUP BY c.ciudad
+ORDER BY ticket_promedio DESC;
 
 ---
 
 ## -- HALLAZGOS DE NEGOCIO
 
 -- Hallazgo 1:
--- La categoría Computación generó ventas por 4.950,
--- siendo la principal fuente de ingresos y representando
--- aproximadamente el 73,7% del total facturado.
+-- Laptop Pro 15 es el producto con mayor facturación
+-- acumulada, alcanzando 3.600 en ventas.
 
 -- Hallazgo 2:
--- Computación registra el ticket promedio más alto
--- (1.237,50), muy por encima de Accesorios (257,25),
--- lo que indica una mayor contribución por transacción.
+-- Todos los clientes registrados realizaron
+-- al menos dos compras, por lo que la base
+-- presenta un 100% de clientes activos.
 
 -- Hallazgo 3:
--- Audio (360) y Almacenamiento (390) presentan los
--- menores niveles de facturación, lo que podría justificar
--- acciones comerciales específicas para impulsar sus ventas.
+-- Las ciudades asociadas a productos de la
+-- categoría Computación presentan tickets
+-- promedio superiores al promedio global.
+
+-- Hallazgo 4:
+-- El análisis por ciudad permite aproximar
+-- el desempeño territorial solicitado en
+-- el brief de RetailPro.
