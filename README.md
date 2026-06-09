@@ -1,440 +1,149 @@
-# Coderhouse SQL Prácticas
+Este repositorio reúne los ejercicios, prácticas y proyectos desarrollados durante mi formación en Data Analytics. El objetivo es documentar el proceso de aprendizaje, consolidar conocimientos técnicos y construir un portfolio orientado al análisis de datos, modelado de bases de datos y Business Intelligence.
 
-Repositorio de ejercicios, prácticas y checkpoints desarrollados durante la cursada de SQL para Data Analytics en Coderhouse.
+Módulo 1 – Introducción al Análisis de Datos
 
-## Objetivo
+Durante el Módulo 1 incorporé los fundamentos del análisis de datos y comprendí el rol estratégico que cumplen los datos en la toma de decisiones dentro de las organizaciones.
 
-Este repositorio documenta el proceso de aprendizaje y aplicación de conceptos fundamentales de bases de datos relacionales, modelado de datos y lenguaje SQL, desde la creación de estructuras hasta la manipulación y consulta de información.
+Aprendí las diferencias entre datos, información y conocimiento, así como las principales etapas del ciclo de vida de los datos: recolección, almacenamiento, procesamiento, análisis y visualización.
 
-Los ejercicios fueron desarrollados utilizando SQL Server y están orientados a fortalecer competencias clave para el análisis de datos, la inteligencia de negocios y la preparación de datos para herramientas de visualización como Power BI.
+También conocí los distintos perfiles profesionales que intervienen en el ecosistema de datos, incluyendo Data Analyst, Data Scientist y Data Engineer, comprendiendo las responsabilidades y herramientas asociadas a cada uno.
 
----
+Finalmente, trabajé conceptos básicos de métricas, indicadores y preguntas de negocio, desarrollando una visión analítica orientada a transformar datos en información útil para la toma de decisiones.
 
-## Contenido del repositorio
+Módulo 2 – Modelado y Diseño de Bases de Datos
 
-### 1. Diseño de Esquemas con DDL
+Durante el Módulo 2 trabajé conceptos fundamentales de modelado y arquitectura de datos.
 
-**Archivo:** `modulo2_unidad1_diseno.sql`
+Aprendí a identificar entidades, atributos y relaciones mediante modelos Entidad–Relación (ER), y a traducir esos modelos a estructuras relacionales utilizando claves primarias y foráneas.
 
-Conceptos trabajados:
+También estudié los principios de normalización (1NF, 2NF y 3NF) para reducir redundancias, mejorar la integridad de los datos y optimizar el almacenamiento de información.
 
-* CREATE TABLE
-* Tipos de datos
-* Diseño de tablas
-* Documentación técnica
-* Buenas prácticas de modelado
+Además, desarrollé modelos de datos orientados a resolver problemas de negocio reales, comprendiendo cómo un buen diseño impacta directamente en la calidad de los análisis posteriores.
 
-Objetivo:
+Como actividad práctica diseñé modelos relacionales para distintos casos de negocio y construí diagramas ER aplicando buenas prácticas de modelado.
 
-Diseñar la estructura inicial de un sistema de gestión de ventas mediante la creación de tablas para clientes y productos.
+Módulo 3 – Introducción a SQL y Sublenguajes
 
----
+Durante el Módulo 3 comencé a trabajar con SQL como lenguaje principal para interactuar con bases de datos relacionales.
 
-### 2. DDL y DML: Administración de Inventario BodegaTech
+Aprendí la estructura básica de una consulta SQL utilizando la sentencia SELECT para recuperar información almacenada en tablas.
 
-**Archivo:** `modulo3_unidad2_bodegatech.sql`
+También incorporé los distintos sublenguajes de SQL:
 
-Conceptos trabajados:
+DDL (Data Definition Language) para definir estructuras.
+DML (Data Manipulation Language) para insertar, modificar y eliminar datos.
+DQL (Data Query Language) para realizar consultas.
+DCL (Data Control Language) para administrar permisos.
+TCL (Transaction Control Language) para gestionar transacciones.
 
-* DROP TABLE
-* CREATE TABLE
-* INSERT INTO
-* UPDATE
-* SELECT
-* ORDER BY
-* GROUP BY
+Además, practiqué operaciones básicas de filtrado mediante WHERE, ordenamiento con ORDER BY y limitación de resultados utilizando TOP o LIMIT según el motor de base de datos.
 
-Objetivo:
+Este módulo sentó las bases para comenzar a trabajar con consultas analíticas más complejas en los módulos posteriores.
 
-Construir y administrar una base de datos de inventario para una empresa distribuidora de productos tecnológicos, registrando operaciones de stock y validando resultados mediante consultas SQL.
+Módulo 4 – Sintaxis SQL y Manipulación de Datos
 
----
+Durante el Módulo 4 profundicé en el uso de SQL para la extracción, filtrado y organización de información almacenada en bases de datos relacionales.
 
-### 3. Checkpoint: Ventas_Tech_DB
+Comencé trabajando con la sentencia SELECT, aprendiendo a consultar tablas completas y a seleccionar únicamente las columnas necesarias para cada análisis.
 
-**Archivo:** `ventas_tech_db.sql`
+También incorporé el uso de alias mediante AS para mejorar la legibilidad de los resultados y facilitar la interpretación de consultas complejas.
 
-Conceptos trabajados:
+Trabajé distintos operadores de filtrado utilizando WHERE junto con:
 
-* Modelo relacional
-* Normalización (3FN)
-* Primary Keys
-* Foreign Keys
-* Restricciones de integridad
-* Consultas JOIN
-* Integridad referencial
+Operadores de comparación (=, <>, >, <, >=, <=).
+Operadores lógicos (AND, OR, NOT).
+BETWEEN.
+IN.
+LIKE.
+IS NULL.
 
-Objetivo:
+Aprendí a ordenar resultados mediante ORDER BY y a limitar registros utilizando TOP y LIMIT.
 
-Diseñar una base de datos completa para una empresa de tecnología, incluyendo categorías, productos, clientes y ventas, preparando la estructura que posteriormente será utilizada en Power BI para análisis y visualización de datos.
+Posteriormente profundicé en funciones de agregación:
 
----
+COUNT()
+SUM()
+AVG()
+MIN()
+MAX()
 
-### 4. Consultas Básicas SELECT y Alias
+y su combinación con GROUP BY para resumir información según diferentes dimensiones de análisis.
 
-**Archivo:** `consultas_basicas.sql`
+También trabajé filtros sobre datos agregados utilizando HAVING y desarrollé consultas orientadas a responder preguntas de negocio reales como:
 
-Conceptos trabajados:
+Ranking de productos.
+Ventas por región.
+Clientes activos.
+Indicadores de desempeño comercial.
 
-* SELECT
-* SELECT *
-* Selección de columnas específicas
-* Alias con AS
-* Buenas prácticas de consulta
-* Documentación SQL
+Como proyecto práctico construí un esquema relacional completo para una empresa de tecnología, generando consultas analíticas y documentando hallazgos de negocio a partir de los resultados obtenidos.
 
-Objetivo:
+Módulo 5 – JOINs, Orden de Ejecución y Combinación de Resultados
 
-Practicar la extracción de información desde una tabla de ventas simulada (`sales`), aplicando consultas básicas para exploración de datos, selección de columnas relevantes y renombrado de campos mediante alias orientados a usuarios de negocio.
+Durante el Módulo 5 profundicé en uno de los conceptos más importantes del análisis de datos con SQL: la combinación de información proveniente de múltiples tablas.
 
-Consultas desarrolladas:
+Aprendí a utilizar distintos tipos de JOIN según la necesidad de negocio:
 
-**Consulta 1 — Exploración general**
+INNER JOIN para recuperar únicamente registros coincidentes entre tablas.
+LEFT JOIN para conservar todos los registros de la tabla principal e identificar faltantes mediante valores NULL.
+RIGHT JOIN y FULL OUTER JOIN para escenarios donde es necesario conservar registros de ambas fuentes.
 
-Visualización completa de la tabla utilizando `SELECT *`.
+También trabajé la detección de inconsistencias y registros sin correspondencia utilizando LEFT JOIN combinado con filtros WHERE IS NULL, una técnica ampliamente utilizada en auditorías de datos y procesos de conciliación.
 
-**Consulta 2 — Selección específica**
-
-Obtención de las columnas necesarias para el área financiera:
-
-* customer_id
-* product_id
-* total_amount
-
-**Consulta 3 — Alias para stakeholders**
-
-Renombrado de columnas mediante `AS` para mejorar la comprensión de los resultados:
-
-* fecha_pedido
-* nombre_producto
-* cantidad_unidades
-
----
-
-## Buenas prácticas aprendidas
-
-### ¿Por qué evitar SELECT * en producción?
-
-Aunque es útil durante la exploración inicial de una tabla, su uso en entornos productivos no es recomendable porque:
-
-* Recupera columnas innecesarias, afectando el rendimiento.
-* Incrementa el volumen de datos transferidos.
-* Dificulta el mantenimiento cuando cambia la estructura de la tabla.
-* Puede exponer información sensible no requerida para el análisis.
-
-La buena práctica consiste en solicitar únicamente las columnas necesarias para cada caso de uso.
-
-### ¿Por qué utilizar alias?
-
-Los alias permiten traducir nombres técnicos a términos comprensibles para usuarios de negocio.
-
-Por ejemplo:
-
-```sql
-SELECT total_amount AS monto_total
-FROM sales;
-```
-
-En lugar de presentar un nombre técnico en inglés, el resultado muestra una etiqueta clara y alineada con el lenguaje del área financiera.
-
-Beneficios:
-
-* Mejora la legibilidad de los reportes.
-* Facilita la comunicación con stakeholders.
-* Reduce ambigüedades.
-* Prepara datasets para Power BI, Excel y Tableau.
-
----
-
-## Módulo 4 – Consultas de Negocio
-
-**Archivo:** `m4_consultas_negocio.sql`
-
-### Conceptos trabajados
-
-* COUNT()
-* SUM()
-* AVG()
-* GROUP BY
-* HAVING
-* ORDER BY
-* TOP
-* CASE WHEN
-* Interpretación de métricas de negocio
-
-### Objetivo
-
-Construir consultas SQL orientadas al análisis de negocio utilizando funciones de agregación, agrupamiento y clasificación de datos.
-
-### Hallazgos obtenidos
-
-Las consultas desarrolladas permiten:
-
-* Identificar las categorías con mayor volumen de ventas.
-* Detectar clientes con mayor frecuencia de compra.
-* Calcular el ticket promedio por categoría.
-* Reconocer las líneas de negocio más rentables.
-* Identificar los productos más vendidos.
-* Clasificar operaciones según su valor económico.
-
-Estas métricas constituyen la base para futuros análisis y visualizaciones en Power BI.
-
-## Módulo 5 – Outer JOINs y Auditoría de Datos
-
-**Archivo:** `outer_joins_ministore.sql`
-
-### Conceptos trabajados
-
-* LEFT JOIN
-* RIGHT JOIN
-* FULL OUTER JOIN
-* Valores NULL
-* Calidad de datos
-* Auditoría de registros
-* Integridad de información
-* Detección de registros huérfanos y validación de integridad de datos
-Conceptos trabajadores UNIÓN IZQUIERDA UNIÓN DERECHA UNIÓN EXTERNA COMPLETA Valores NULOS Calidad de datos Auditoría de registros Integridad de información Detección de registros huérfanos y validación de integridad de datos Objetivo Analizar la relación entre el catálogo de productos y el historial de ventas de una tienda minorista, identificando productos sin ventas, ventas asociadas a productos inexistentes y posibles inconsistencias en los datos.
-
-¿Por qué usé LEFT JOIN en la Consulta 1 y no INNER JOIN? Utilicé LEFT JOIN porque necesitaba conservar todos los registros de la tabla productos, incluso aquellos que no tienen ventas asociadas.
-
-Si hubiera utilizado INNER JOIN, únicamente se mostrarían los productos que tienen coincidencias en la tabla de ventas y se perderían precisamente los productos que el ejercicio busca identificar.
-
-Por ejemplo, los productos 108 (Hub USB-C 7p) y 109 (Parlante Bluetooth) no aparecen en la tabla de ventas. Con INNER JOIN desaparecerían del resultado y no podríamos detectarlos.
-
-¿Por qué usé RIGHT JOIN en la Consulta 2? Utilicé RIGHT JOIN porque el objetivo era conservar todos los registros de la tabla de ventas, incluso aquellos que no tienen coincidencia en la tabla de productos.
-
-En mi consulta:
-
-Tabla izquierda:productos Tabla derecha:ventas Esto permite identificar ventas registradas con productos inexistentes en el catálogo.
-
-Gracias a esta consulta se detecta la venta con producto_id = 999 , que constituye un registro huérfano y evidencia un posible problema de calidad de datos o de integridad referencial.
-
-¿Qué representan los valores NULL? Los valores NULL indican ausencia de información o falta de coincidencia entre las tablas.
-
-Es importante destacar que los valores NULL no representan errores en la consulta, sino la ausencia de correspondencia entre registros relacionados. En ejercicios de auditoría y calidad de datos, los NULL suelen ser precisamente la evidencia que buscamos para detectar registros incompletos o inconsistentes.
-
-Ejemplo 1
-
-En la Consulta 1, cuando venta_idaparece como NULL significa que el producto existe en el catálogo pero nunca fue vendido.
-
-Ejemplos:
-
-Producto 108 – Hub USB-C 7p Producto 109 – Parlante Bluetooth Ejemplo 2
-
-En la Consulta 2, cuando los campos provenientes de la tabla productos aparecen como NULL significa que existe una venta cuyo producto no se encuentra registrado en el catálogo.
-
-Ejemplo:
-
-Venta 10 producto_id = 999 ¿Cuándo usaría FULL OUTER JOIN en un caso real? Utilizaría FULL OUTER JOIN durante auditorías de calidad de datos, procesos de migración o validaciones de integridad entre sistemas.
-
-Por ejemplo, una empresa podría comparar su catálogo maestro de productos con las ventas registradas para detectar:
-
-Productos que nunca se vendieron. Ventas asociadas a productos inexistentes. Errores de carga o sincronización entre sistemas. Este tipo de consulta permite obtener una visión completa de todas las coincidencias y discrepancias entre ambas fuentes de información.
-
-Además, este enfoque resulta especialmente útil en procesos ETL, migraciones de sistemas, conciliación de bases de datos y controles de calidad previos a la construcción de cuadros de mando, informes ejecutivos o modelos analíticos.
-
-Resultados obtenidos A través de las consultas desarrolladas fue posible:
-
-Identificar productos existentes en el catálogo que nunca registraron ventas. Detectar ventas asociadas a productos inexistentes. Analizar registros huérfanos y posibles inconsistencias de carga. Comprender el comportamiento de los valores NULL en distintos tipos de JOIN. Aplicar técnicas de auditoría y validación de calidad de datos utilizando SQL. Estas prácticas reflejan situaciones habituales en proyectos de Data Analytics, Business Intelligence y gobierno de datos, donde la calidad de la información es un requisito fundamental para la toma de decisiones.
-### Objetivo
-
-Analizar la relación entre el catálogo de productos y el historial de ventas de una tienda minorista, identificando productos sin ventas, ventas asociadas a productos inexistentes y posibles inconsistencias en los datos.
-
-### ¿Por qué usé LEFT JOIN en la Consulta 1 y no INNER JOIN?
-
-Utilicé LEFT JOIN porque necesitaba conservar todos los registros de la tabla `productos`, incluso aquellos que no tienen ventas asociadas.
-
-Si hubiera utilizado INNER JOIN, únicamente se mostrarían los productos que tienen coincidencias en la tabla `ventas` y se perderían precisamente los productos que el ejercicio busca identificar.
-
-Por ejemplo, los productos **108 (Hub USB-C 7p)** y **109 (Parlante Bluetooth)** no aparecen en la tabla de ventas. Con INNER JOIN desaparecerían del resultado y no podríamos detectarlos.
-
-### ¿Por qué usé RIGHT JOIN en la Consulta 2?
-
-Utilicé RIGHT JOIN porque el objetivo era conservar todos los registros de la tabla `ventas`, incluso aquellos que no tienen coincidencia en la tabla `productos`.
-
-En mi consulta:
-
-* Tabla izquierda: `productos`
-* Tabla derecha: `ventas`
-
-Esto permite identificar ventas registradas con productos inexistentes en el catálogo.
-
-Gracias a esta consulta se detecta la venta con **producto_id = 999**, que constituye un registro huérfano y evidencia un posible problema de calidad de datos o de integridad referencial.
-
-### ¿Qué representan los valores NULL?
-
-Los valores NULL indican ausencia de información o falta de coincidencia entre las tablas.
-
-Es importante destacar que los valores NULL no representan errores en la consulta, sino la ausencia de correspondencia entre registros relacionados. En ejercicios de auditoría y calidad de datos, los NULL suelen ser precisamente la evidencia que buscamos para detectar registros incompletos o inconsistentes.
-
-**Ejemplo 1**
-
-En la Consulta 1, cuando `venta_id` aparece como NULL significa que el producto existe en el catálogo pero nunca fue vendido.
-
-Ejemplos:
-
-* Producto 108 – Hub USB-C 7p
-* Producto 109 – Parlante Bluetooth
-
-**Ejemplo 2**
-
-En la Consulta 2, cuando los campos provenientes de la tabla `productos` aparecen como NULL significa que existe una venta cuyo producto no se encuentra registrado en el catálogo.
-
-Ejemplo:
-
-* Venta 10
-* producto_id = 999
-
-### ¿Cuándo usaría FULL OUTER JOIN en un caso real?
-
-Utilizaría FULL OUTER JOIN durante auditorías de calidad de datos, procesos de migración o validaciones de integridad entre sistemas.
-
-Por ejemplo, una empresa podría comparar su catálogo maestro de productos con las ventas registradas para detectar:
-
-* Productos que nunca se vendieron.
-* Ventas asociadas a productos inexistentes.
-* Errores de carga o sincronización entre sistemas.
-
-Este tipo de consulta permite obtener una visión completa de todas las coincidencias y discrepancias entre ambas fuentes de información.
-
-Además, este enfoque resulta especialmente útil en procesos ETL, migraciones de sistemas, conciliación de bases de datos y controles de calidad previos a la construcción de dashboards, reportes ejecutivos o modelos analíticos.
-# RetailChain – UNION y UNION ALL
-
-## Objetivo
-
-Consolidar información proveniente de dos sucursales utilizando los operadores UNION y UNION ALL para comprender el tratamiento de registros duplicados y su impacto en el análisis de datos.
-
----
-
-## ¿Cuántas filas devuelve cada consulta y por qué son distintas?
-
-La consulta con **UNION** devuelve **11 filas**, mientras que la consulta con **UNION ALL** devuelve **14 filas**.
-
-La diferencia se debe a que **UNION elimina registros duplicados** antes de devolver el resultado final.
-
-En este ejercicio existen 14 registros entre ambas sucursales (7 en la Sucursal Norte y 7 en la Sucursal Sur). Sin embargo, los productos:
-
-* 103 – Monitor 4K 27"
-* 104 – Teclado Mecánico
-* 106 – SSD Externo 1TB
-
-aparecen en ambas sucursales.
-
-Al seleccionar únicamente las columnas `id_producto`, `nombre_producto` y `categoria`, UNION conserva una sola aparición de cada producto repetido, reduciendo el resultado final a 11 filas.
-
-Por el contrario, UNION ALL conserva los 14 registros originales porque no elimina duplicados.
-
----
-
-## ¿Por qué UNION ALL es más eficiente que UNION?
-
-UNION ALL es más eficiente porque simplemente concatena los resultados de ambas consultas.
-
-Por el contrario, UNION realiza un procesamiento adicional para identificar y eliminar registros duplicados, lo que implica mayor consumo de CPU y memoria.
-
-Por esta razón, cuando no es necesario eliminar duplicados, UNION ALL suele ofrecer un mejor rendimiento, especialmente en bases de datos con grandes volúmenes de información.
-
----
-
-## ¿En qué casos de negocio usarías cada uno?
-
-### UNION
-
-* Consolidar clientes únicos provenientes de distintos sistemas CRM.
-* Crear un catálogo maestro de productos sin registros repetidos.
-* Unificar listas de proveedores evitando duplicados.
-
-### UNION ALL
-
-* Unificar ventas históricas y actuales para análisis de tendencias.
-* Consolidar registros de auditoría o logs donde cada evento debe conservarse.
-* Integrar transacciones provenientes de múltiples sucursales para calcular volumen total de operaciones.
-
----
-
-## ¿Qué ocurre si las columnas no coinciden en número o tipo?
-
-Para utilizar UNION o UNION ALL ambas consultas deben devolver la misma cantidad de columnas y en el mismo orden.
-
-Si una consulta devuelve más columnas que la otra, SQL genera un error.
-
-También pueden producirse errores cuando los tipos de datos son incompatibles entre columnas equivalentes.
-
-### Ejemplo
-
-```sql
-SELECT id_producto, nombre_producto
-FROM inventario_sucursal_norte
+Además, incorporé los operadores:
 
 UNION
+UNION ALL
 
-SELECT id_producto
-FROM inventario_sucursal_sur;
-```
+para consolidar resultados provenientes de múltiples consultas.
 
-Esta consulta genera un error porque la primera parte devuelve dos columnas y la segunda solo una.
+Comprendí que:
 
-Por lo tanto, para utilizar correctamente UNION o UNION ALL es necesario que ambas consultas tengan la misma estructura y tipos de datos compatibles.
+UNION elimina registros duplicados.
+UNION ALL conserva todos los registros y ofrece un mejor rendimiento cuando no es necesario eliminar duplicados.
 
-## Consideraciones de rendimiento
+Otro aprendizaje clave fue comprender el orden real de ejecución de SQL:
 
-Aunque UNION y UNION ALL permiten combinar resultados de múltiples consultas, presentan diferencias de rendimiento.
+FROM / JOIN
+WHERE
+GROUP BY
+HAVING
+SELECT
+DISTINCT
+ORDER BY
+LIMIT / TOP
 
-UNION elimina registros duplicados, lo que obliga al motor SQL a realizar operaciones adicionales de ordenamiento o comparación para identificar coincidencias.
+Este conocimiento me permitió entender con mayor profundidad cómo procesa las consultas el motor de base de datos y cómo optimizar consultas analíticas.
 
-UNION ALL simplemente concatena los conjuntos de resultados sin verificar duplicados, por lo que generalmente requiere menos recursos y ofrece mejores tiempos de ejecución en tablas de gran volumen.
+Como práctica desarrollé ejercicios orientados a:
 
-Por esta razón, cuando no es necesario eliminar duplicados, UNION ALL suele ser la alternativa recomendada.
----
+Construcción de vistas enriquecidas para herramientas de Business Intelligence.
+Detección de clientes sin actividad y productos sin ventas.
+Consolidación de datos mediante UNION y UNION ALL.
+Auditorías de calidad e integración de datos utilizando JOINs.
+Herramientas Utilizadas
+SQL
+MySQL
+SQL Server (conceptos)
+Draw.io
+Lucidchart
+Git
+GitHub
+Próximos Pasos
 
-## Autor
+En los siguientes módulos continuaré profundizando en:
 
-Gerónimo Daguerre
+Consultas SQL avanzadas.
+Subconsultas.
+CTEs (Common Table Expressions).
+Funciones de ventana.
+Optimización de consultas.
+Business Intelligence.
+Power BI.
+Visualización de datos.
+Proyectos integradores orientados a análisis de negocio.
 
-Proyecto académico desarrollado como parte de la formación en Data Analytics.
-
-Este ejercicio permitió aplicar operadores de conjuntos en SQL para consolidar información proveniente de múltiples fuentes, comprendiendo las diferencias funcionales y de rendimiento entre UNION y UNION ALL en escenarios reales de análisis de datos.
-
-### Resultados obtenidos
-
-A través de las consultas desarrolladas fue posible:
-
-* Identificar productos existentes en el catálogo que nunca registraron ventas.
-* Detectar ventas asociadas a productos inexistentes.
-* Analizar registros huérfanos y posibles inconsistencias de carga.
-* Comprender el comportamiento de los valores NULL en distintos tipos de JOIN.
-* Aplicar técnicas de auditoría y validación de calidad de datos utilizando SQL.
-
-Estas prácticas reflejan situaciones habituales en proyectos de Data Analytics, Business Intelligence y gobierno de datos, donde la calidad de la información es un requisito fundamental para la toma de decisiones.
-
-## Habilidades desarrolladas
-
-* SQL (DDL y DML)
-* Diseño de bases de datos relacionales
-* Integridad referencial
-* Modelado de datos
-* Normalización de tablas
-* Consultas SQL
-* SELECT y alias
-* JOINs
-* Gestión de inventarios
-* Modelos de ventas
-* Preparación de datos para análisis
-
----
-
-## Tecnologías utilizadas
-
-* SQL Server
-* SQL Server Management Studio (SSMS)
-* Git
-* GitHub
-
-## Autor
-
-Gerónimo Daguerre
-
-Proyecto académico desarrollado como parte de la formación en Data Analytics.
-
-Este repositorio refleja la evolución práctica de mis conocimientos en bases de datos y SQL, incorporando ejercicios progresivos orientados al análisis de datos y la inteligencia de negocios.
+Autor: Gerónimo Daguerre
+Curso: Data Analytics – Coderhouse
+Año: 2026
 
